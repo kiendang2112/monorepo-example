@@ -1,0 +1,68 @@
+{
+  "name": "example-app",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/**",
+      "packages/**"
+    ],
+    "catalog": {
+      "@tanstack/react-query": "^5.90.16",
+      "@types/bun": "^1.3.5",
+      "@types/pg": "^8.16.0",
+      "dotenv": "^17.2.3",
+      "drizzle-kit": "^0.31.8",
+      "drizzle-orm": "^0.45.1",
+      "drizzle-seed": "^0.3.1",
+      "nanoid": "^5.1.6",
+      "pg": "^8.16.3",
+      "typescript": "^5",
+      "zod": "^4.2.1",
+      "axios": "^1.13.5",
+      "react-hook-form": "^7.71.0",
+      "@t3-oss/env-nextjs": "^0.13.0"
+    },
+    "catalogs": {
+      "elysia": {
+        "@elysiajs/server-timing": "^1.4.0",
+        "@elysiajs/cors": "^1.4.1",
+        "@elysiajs/openapi": "^1.4.13",
+        "elysia": "^1.4.19"
+      }
+    }
+  },
+  "scripts": {
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev": "turbo dev",
+    "prepare": "husky",
+    "dev:api-web": "turbo dev --filter=web --filter=backend"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
+    "@tanstack/react-query": "^5.90.20"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@repo/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "@types/eslint-plugin-security": "^3.0.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-unicorn": "^62.0.0",
+    "husky": "^9.1.7",
+    "jiti": "^2.6.1",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-packagejson": "^2.5.20",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tsdown": "^0.19.0-beta.3",
+    "turbo": "^2.7.2",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.51.0"
+  },
+  "packageManager": "bun@1.3.0"
+}

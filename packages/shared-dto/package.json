@@ -1,0 +1,17 @@
+{
+  "name": "@repo/shared-dto",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./schemas/*": "./schemas/*.ts",
+    "./types/*": "./types/*.ts",
+    "./consts/*": "./consts/*.ts"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

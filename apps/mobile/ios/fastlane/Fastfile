@@ -1,0 +1,71 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  lane :increment_version do
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: ENV['FIREBASE_APP_ID']
+    )
+    if latest_release.nil?
+      increment_version_code({ version_code: 1 })
+    else
+      increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+    end
+  end
+
+  lane :firebase do
+    setup_ci
+
+    match(
+      type: "adhoc",
+      app_identifier: ENV['APPLE_BUNDLE_ID'],
+    )
+
+    build_app(
+      scheme: "mobileorg-dev",
+      export_method: "ad-hoc"
+    )
+
+    increment_version
+
+    release = firebase_app_distribution(
+      app: ENV['FIREBASE_APP_ID'],
+      firebase_cli_token: ENV['FIREBASE_TOKEN'],
+      groups: "dev",
+      release_notes: git_branch
+    )
+  end
+
+  # lane :beta do
+  #   setup_ci
+
+  #   match(type: "appstore")
+
+  #   build_app(
+  #     scheme: "mobileorg-dev",
+  #     export_method: "app-store"
+  #   )
+
+  #   app_store_connect_api_key(
+  #     issuer_id: "2de4ba12-218a-48fc-ad08-058af42ede25",
+  #     key_id: "68J9UQ9838",
+  #     key_filepath: "./AuthKey_68J9UQ9838.p8"
+  #   )
+
+  #   upload_to_testflight
+  # end
+end
