@@ -2,14 +2,14 @@ import z from "zod";
 
 export const TodoSchema = {
   createTodoRequest: z.object({
-    title: z.string('Title is required'),
+    title: z.string('Title is required').min(1, 'Title is required'),
   }),
   createTodoResponse: z.object({
     id: z.number('ID is required'),
-    title: z.string('Title is required'),
+    title: z.string('Title is required').min(1, 'Title is required'),
   }),
   updateTodoRequest: z.object({
-    title: z.string('Title is required'),
+    title: z.string('Title is required').min(1, 'Title is required'),
   }),
   updateTodoResponse: z.object({
     id: z.number('ID is required'),
