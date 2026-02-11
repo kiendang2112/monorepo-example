@@ -12,7 +12,7 @@ export default function Modal() {
   }
 
   return (
-    <View className="flex-1 items-center justify-center p-4">
+    <View className="flex-1 items-center justify-center p-4 px-6">
       <Surface variant="secondary" className="w-full max-w-sm rounded-lg p-5">
         <View className="items-center">
           <View className="bg-accent mb-3 h-12 w-12 items-center justify-center rounded-lg">
