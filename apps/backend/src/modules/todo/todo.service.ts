@@ -32,7 +32,7 @@ class TodoService {
     try {
       await fs.writeFile(this.todosFilePath, JSON.stringify(todos, null, 2), 'utf8');
     } catch {
-      throw new Error('Failed to save todos data 2');
+      throw new Error('Failed to save todos data');
     }
   }
 
