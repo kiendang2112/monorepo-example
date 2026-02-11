@@ -1,0 +1,26 @@
+name: Build & deploy Web
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/web/**"
+      - "packages/shared-core/**"
+      - "packages/shared-dto/**"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build & deploy Web
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Hello World Action
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: 'Web App'

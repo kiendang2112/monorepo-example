@@ -1,0 +1,52 @@
+name: Build & deploy Backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/backend/**"
+      - "packages/shared-backend/**"
+      - "packages/shared-core/**"
+      - "packages/shared-dto/**"
+
+  workflow_dispatch:
+    inputs:
+      services:
+        description: 'Services to build (comma-separated, or "all")'
+        required: false
+        default: "all"
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.filter.outputs.services }}
+    steps:
+      - name: Detect services to build
+        id: filter
+        run: |
+          if [[ "${{ github.event.inputs.services }}" != "" && "${{ github.event.inputs.services }}" != "all" ]]; then
+            # Manual trigger specific services
+            SERVICES='${{ github.event.inputs.services }}'
+            echo "services=[$(echo $SERVICES | sed 's/,/","/g' | sed 's/^/"/' | sed 's/$/"/')]" >> $GITHUB_OUTPUT
+          else
+            # Build all services
+            echo 'services=["api","cron","worker"]' >> $GITHUB_OUTPUT
+          fi
+
+  build:
+    name: Build & deploy Backend
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: ${{ fromJson(needs.setup.outputs.services) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Build and push ${{ matrix.service }}
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: 'Backend App - ${{ matrix.service }}'
