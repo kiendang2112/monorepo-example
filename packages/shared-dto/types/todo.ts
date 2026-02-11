@@ -10,4 +10,5 @@ export interface Todo {
   status: TodoStatusEnum;
   createdAt: string;
   updatedAt: string;
+  isCompleted: boolean;
 }
