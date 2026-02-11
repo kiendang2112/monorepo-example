@@ -24,7 +24,7 @@ class TodoService {
       const data = await fs.readFile(this.todosFilePath, 'utf8');
       return JSON.parse(data).toSorted((a: Todo, b: Todo) => b.id - a.id);
     } catch {
-      throw new Error('Failed to read todos data');
+      throw new Error('Failed to read todos data 1');
     }
   }
 
@@ -32,7 +32,7 @@ class TodoService {
     try {
       await fs.writeFile(this.todosFilePath, JSON.stringify(todos, null, 2), 'utf8');
     } catch {
-      throw new Error('Failed to save todos data');
+      throw new Error('Failed to save todos data 2');
     }
   }
 
