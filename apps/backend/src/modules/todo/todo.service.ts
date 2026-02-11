@@ -57,7 +57,7 @@ class TodoService {
   }
 
   async updateTodo(id: number, title: string) {
-    logger.info(`Update todo request received for id: ${id} and title: ${title}`);
+    logger.info(`Update todo request received for id: ${id} an 1d title: ${title}`);
     const todos = await this.readTodosFromFile();
     const todo = todos.find(t => t.id === id);
     const maxId = todos.length > 0 ? Math.max(...todos.map(t => t.id)) + 1 : 1;
