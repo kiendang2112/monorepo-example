@@ -35,6 +35,7 @@ jobs:
           fi
 
   build:
+    needs: setup
     name: Build & deploy Backend
     runs-on: ubuntu-latest
     strategy:
