@@ -20,7 +20,5 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Hello World Action
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: 'Web App'
+      - name: Build Web App
+        run: echo "Building Web App"

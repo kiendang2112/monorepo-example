@@ -48,6 +48,4 @@ jobs:
         uses: actions/checkout@v5
 
       - name: Build and push ${{ matrix.service }}
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: 'Backend App - ${{ matrix.service }}'
+        run: echo "Building Backend App - ${{ matrix.service }}"
