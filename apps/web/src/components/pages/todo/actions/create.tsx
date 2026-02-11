@@ -64,7 +64,7 @@ export const CreateTodoAction = () => {
           {mutation.isPending ? <Loader2Icon className="h-5 w-5" /> : <PlusIcon className="h-5 w-5" />}
         </button>
       </form>
-      {errors.title && <span className="text-red-500 text-sm block">{errors.title.message}</span>}
+      {errors.title && <span className="text-red-500 font-bold text-sm block">{errors.title.message}</span>}
     </div>
   )
 };
